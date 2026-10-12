@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useProducts } from "../context/ProductContext";
 import ProductCard from "../components/product/ProductCard";
-import { SlidersHorizontal, RotateCcw, Frown, ChevronRight } from "lucide-react";
+import { SlidersHorizontal, RotateCcw, Frown, ChevronRight, Filter, X } from "lucide-react";
 
 function Shop() {
+    const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
     const {
         categories,
         filteredProducts,
@@ -58,20 +59,29 @@ function Shop() {
             <div className="container">
                 <div className="shop-main-layout">
                     {/* Filters Sidebar */}
-                    <aside className="shop-filters-sidebar">
+                    <aside className={`shop-filters-sidebar ${mobileFiltersOpen ? "mobile-filters-expanded" : ""}`}>
                         <div className="filters-header">
                             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
                                 <SlidersHorizontal size={18} />
                                 <h3>Filter Plants</h3>
                             </div>
-                            <button
-                                onClick={resetFilters}
-                                className="filter-reset-btn"
-                                title="Reset all filters"
-                            >
-                                <RotateCcw size={13} style={{ display: "inline", marginRight: "3px" }} />
-                                Reset
-                            </button>
+                            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                                <button
+                                    onClick={resetFilters}
+                                    className="filter-reset-btn"
+                                    title="Reset all filters"
+                                >
+                                    <RotateCcw size={13} style={{ display: "inline", marginRight: "3px" }} />
+                                    Reset
+                                </button>
+                                <button
+                                    className="mobile-filters-close-btn"
+                                    onClick={() => setMobileFiltersOpen(false)}
+                                    aria-label="Close filters"
+                                >
+                                    <X size={18} />
+                                </button>
+                            </div>
                         </div>
 
                         {/* Category Filter */}
@@ -151,9 +161,20 @@ function Shop() {
                     <main className="shop-content-area">
                         {/* Toolbar: Sorting & Count */}
                         <div className="shop-toolbar">
-                            <span className="shop-results-count">
-                                Showing <strong>{filteredProducts.length}</strong> items
-                            </span>
+                            <div className="shop-toolbar-left">
+                                <button
+                                    className="mobile-filter-trigger-btn"
+                                    onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
+                                    aria-label="Toggle filters"
+                                >
+                                    <Filter size={16} />
+                                    <span>Filters</span>
+                                    {selectedCategory !== "all" && <span className="active-dot">•</span>}
+                                </button>
+                                <span className="shop-results-count">
+                                    Showing <strong>{filteredProducts.length}</strong> items
+                                </span>
+                            </div>
 
                             <div className="shop-sort-control">
                                 <label htmlFor="shop-sort">Sort by:</label>
