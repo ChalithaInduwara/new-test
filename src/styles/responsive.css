@@ -1,0 +1,198 @@
+/* ========================================================
+   RESPONSIVE DESIGN BREAKPOINTS
+   ======================================================== */
+
+@media (max-width: 1100px) {
+    .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+
+    .categories-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-columns-container {
+        grid-template-columns: 1.5fr 1fr 1fr;
+    }
+
+    .footer-col-newsletter {
+        grid-column: 1 / -1;
+    }
+
+    .shop-main-layout {
+        grid-template-columns: 240px 1fr;
+        gap: 1.8rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .nav-links-desktop {
+        display: none;
+    }
+
+    .nav-search-wrapper {
+        display: none;
+    }
+
+    .mobile-toggle-btn {
+        display: block;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        text-align: center;
+    }
+
+    .hero-pill-badge {
+        margin: 0 auto 1.25rem;
+    }
+
+    .hero-subtitle {
+        margin: 0 auto 2rem;
+    }
+
+    .hero-cta-group {
+        justify-content: center;
+    }
+
+    .hero-stats-row {
+        justify-content: center;
+    }
+
+    .hero-floating-badge {
+        left: 1rem;
+        bottom: 1rem;
+    }
+
+    .product-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .cart-grid-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .checkout-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-story-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .benefits-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .shop-main-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .shop-filters-sidebar {
+        position: static;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 680px) {
+    .hero-title {
+        font-size: 2.4rem;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .categories-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .product-card-content {
+        padding: 0.85rem;
+    }
+
+    .product-card-title {
+        font-size: 0.98rem;
+    }
+
+    .product-price-current {
+        font-size: 1rem;
+    }
+
+    .cart-item-row {
+        grid-template-columns: 75px 1fr;
+        gap: 1rem;
+    }
+
+    .cart-item-total {
+        grid-column: 2;
+        text-align: left;
+    }
+
+    .form-row-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .payment-methods-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .announcement-right {
+        display: none;
+    }
+
+    .announcement-container {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .footer-columns-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .footer-bottom-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .floating-toast {
+        left: 1rem;
+        right: 1rem;
+        bottom: 1rem;
+        max-width: unset;
+    }
+}
+
+@media (max-width: 480px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-main-card {
+        height: 340px;
+    }
+
+    .gallery-main-frame {
+        height: 320px;
+    }
+
+    .care-cards-grid {
+        grid-template-columns: 1fr;
+    }
+}
