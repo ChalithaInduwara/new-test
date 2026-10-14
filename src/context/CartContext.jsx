@@ -1,13 +1,16 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { useStore } from "./StoreContext";
 
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
+    const { siteSettings, validateCoupon } = useStore();
+
     const [cart, setCart] = useState(() => {
         try {
             const saved = localStorage.getItem("leaf_clay_cart");
             return saved ? JSON.parse(saved) : [
-                // Start with a friendly default item to showcase cart functionality
+                // Friendly default item showcasing botanical cart
                 {
                     id: "mini-bonsai-tree",
                     product: {
@@ -29,6 +32,7 @@ export function CartProvider({ children }) {
 
     const [couponCode, setCouponCode] = useState("");
     const [discountRate, setDiscountRate] = useState(0);
+    const [fixedDiscount, setFixedDiscount] = useState(0);
     const [toast, setToast] = useState(null);
 
     useEffect(() => {
@@ -86,41 +90,41 @@ export function CartProvider({ children }) {
         setCart([]);
         setCouponCode("");
         setDiscountRate(0);
+        setFixedDiscount(0);
     };
 
+    const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const cartSubtotal = cart.reduce(
+        (sum, item) => sum + (Number(item.product.price) || 0) * item.quantity,
+        0
+    );
+
     const applyCoupon = (code) => {
-        const clean = code.trim().toUpperCase();
-        if (clean === "LEAF15") {
-            setCouponCode("LEAF15");
-            setDiscountRate(0.15);
-            showToast("Promo code LEAF15 applied! 15% discount saved 🎉");
-            return { success: true, message: "15% discount applied successfully!" };
-        } else if (clean === "WELCOME10") {
-            setCouponCode("WELCOME10");
-            setDiscountRate(0.10);
-            showToast("Welcome coupon applied! 10% discount saved 🎉");
-            return { success: true, message: "10% discount applied successfully!" };
+        const result = validateCoupon(code, cartSubtotal);
+        if (result.valid) {
+            setCouponCode(result.coupon.code);
+            setDiscountRate(result.discountRate);
+            setFixedDiscount(result.fixedAmount);
+            showToast(result.message, "success");
+            return { success: true, message: result.message };
         } else {
-            showToast("Invalid promo code. Try LEAF15", "error");
-            return { success: false, message: "Invalid promo code. Try LEAF15" };
+            showToast(result.message, "error");
+            return { success: false, message: result.message };
         }
     };
 
     const removeCoupon = () => {
         setCouponCode("");
         setDiscountRate(0);
+        setFixedDiscount(0);
         showToast("Coupon removed");
     };
 
-    const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
-    const cartSubtotal = cart.reduce(
-        (sum, item) => sum + item.product.price * item.quantity,
-        0
-    );
-
-    const discountAmount = Math.round(cartSubtotal * discountRate);
-    const freeShippingThreshold = 3500;
-    const shippingFee = cartSubtotal >= freeShippingThreshold || cartSubtotal === 0 ? 0 : 350;
+    const discountAmount = Math.round(cartSubtotal * discountRate) + fixedDiscount;
+    const freeShippingThreshold = siteSettings?.freeShippingThreshold ?? 3500;
+    const baseShippingFee = siteSettings?.standardShippingFee ?? 350;
+    const shippingFee =
+        cartSubtotal >= freeShippingThreshold || cartSubtotal === 0 ? 0 : baseShippingFee;
     const cartTotal = Math.max(0, cartSubtotal - discountAmount + shippingFee);
 
     return (

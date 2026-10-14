@@ -3,6 +3,8 @@ import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { useProducts } from "../../context/ProductContext";
 import { useTheme } from "../../context/ThemeContext";
+import { useStore } from "../../context/StoreContext";
+import { useAuth } from "../../context/AuthContext";
 import {
     ShoppingBag,
     Search,
@@ -12,13 +14,19 @@ import {
     PhoneCall,
     Sparkles,
     Sun,
-    Moon
+    Moon,
+    ShieldCheck,
+    User,
+    LogOut
 } from "lucide-react";
 
 function Navbar() {
     const { cartCount } = useCart();
     const { searchQuery, setSearchQuery } = useProducts();
     const { isDark, toggleTheme } = useTheme();
+    const { siteSettings } = useStore();
+    const { currentUser, isAuthenticated, isAdmin, logout } = useAuth();
+
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [showSearchInput, setShowSearchInput] = useState(false);
     const navigate = useNavigate();
@@ -34,21 +42,25 @@ function Navbar() {
     return (
         <header className="site-header">
             {/* Top Announcement Bar */}
-            <div className="announcement-bar">
-                <div className="announcement-container">
-                    <div className="announcement-item">
-                        <Sparkles size={14} className="announcement-icon" />
-                        <span>
-                            Spring Garden Sale: Use code <strong>LEAF15</strong> for 15% off your entire order!
-                        </span>
-                    </div>
-                    <div className="announcement-right">
-                        <span>🌱 100% Healthy Plant Arrival Guarantee</span>
-                        <span className="announcement-divider">•</span>
-                        <span>Free Shipping Over Rs. 3,500</span>
+            {siteSettings?.announcementActive !== false && (
+                <div className="announcement-bar">
+                    <div className="announcement-container">
+                        <div className="announcement-item">
+                            <Sparkles size={14} className="announcement-icon" />
+                            <span>
+                                {siteSettings?.announcementText || "Spring Nursery Release: Mindful living plants"}
+                            </span>
+                        </div>
+                        <div className="announcement-right">
+                            <span>🌱 100% Healthy Plant Arrival Guarantee</span>
+                            <span className="announcement-divider">•</span>
+                            <span>
+                                Free Shipping Over Rs. {siteSettings?.freeShippingThreshold?.toLocaleString() ?? "3,500"}
+                            </span>
+                        </div>
                     </div>
                 </div>
-            </div>
+            )}
 
             {/* Main Navbar */}
             <nav className="navbar-container">
@@ -58,8 +70,8 @@ function Navbar() {
                             <Leaf size={22} className="brand-leaf-icon" />
                         </div>
                         <div className="brand-text-group">
-                            <span className="brand-title">Leaf &amp; Clay</span>
-                            <span className="brand-tagline">Plants &amp; Decorative Pots</span>
+                            <span className="brand-title">{siteSettings?.storeName || "Leaf & Clay"}</span>
+                            <span className="brand-tagline">{siteSettings?.tagline || "Plants & Decorative Pots"}</span>
                         </div>
                     </Link>
                 </div>
@@ -78,6 +90,23 @@ function Navbar() {
                     <NavLink to="/contact" className={navLinkClass}>
                         Contact &amp; Care
                     </NavLink>
+
+                    {isAdmin && (
+                        <NavLink
+                            to="/admin"
+                            className={navLinkClass}
+                            style={{
+                                display: "inline-flex",
+                                alignItems: "center",
+                                gap: "0.35rem",
+                                color: "var(--color-terracotta)",
+                                fontWeight: 700
+                            }}
+                        >
+                            <ShieldCheck size={16} />
+                            <span>Admin Suite</span>
+                        </NavLink>
+                    )}
                 </div>
 
                 {/* Right Actions */}
@@ -117,6 +146,52 @@ function Navbar() {
                             {isDark ? "Dark" : "Light"}
                         </span>
                     </button>
+
+                    {/* User Account / Sign In Pill */}
+                    {isAuthenticated ? (
+                        <Link
+                            to="/account"
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "0.45rem",
+                                padding: "0.4rem 0.85rem",
+                                borderRadius: "var(--radius-full)",
+                                backgroundColor: "var(--color-emerald-ultra-light)",
+                                border: "1px solid var(--color-border)",
+                                color: "var(--color-text-main)",
+                                textDecoration: "none",
+                                fontSize: "0.85rem",
+                                fontWeight: 600
+                            }}
+                            title={`Account: ${currentUser.name}`}
+                        >
+                            <User size={16} color="var(--color-forest)" />
+                            <span style={{ maxWidth: "110px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                                {currentUser.name.split(" ")[0]}
+                            </span>
+                        </Link>
+                    ) : (
+                        <Link
+                            to="/login"
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "0.4rem",
+                                padding: "0.4rem 0.85rem",
+                                borderRadius: "var(--radius-full)",
+                                backgroundColor: "var(--color-emerald-ultra-light)",
+                                border: "1px solid var(--color-border)",
+                                color: "var(--color-forest)",
+                                textDecoration: "none",
+                                fontSize: "0.85rem",
+                                fontWeight: 600
+                            }}
+                        >
+                            <User size={16} />
+                            <span>Sign In</span>
+                        </Link>
+                    )}
 
                     {/* Cart Trigger */}
                     <Link to="/cart" className="nav-cart-btn" aria-label="Shopping Cart">
@@ -215,6 +290,26 @@ function Navbar() {
                             >
                                 <span>Checkout</span>
                             </NavLink>
+
+                            {isAuthenticated ? (
+                                <NavLink
+                                    to="/account"
+                                    className={navLinkClass}
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    style={{ color: "var(--color-forest)", fontWeight: 700 }}
+                                >
+                                    <span>👤 My Account ({currentUser.name.split(" ")[0]})</span>
+                                </NavLink>
+                            ) : (
+                                <NavLink
+                                    to="/login"
+                                    className={navLinkClass}
+                                    onClick={() => setMobileMenuOpen(false)}
+                                >
+                                    <span>👤 Sign In / Register</span>
+                                </NavLink>
+                            )}
+
                             <NavLink
                                 to="/about"
                                 className={navLinkClass}
@@ -229,14 +324,25 @@ function Navbar() {
                             >
                                 <span>Contact &amp; FAQ</span>
                             </NavLink>
+
+                            {isAdmin && (
+                                <NavLink
+                                    to="/admin"
+                                    className={navLinkClass}
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    style={{ color: "var(--color-terracotta)", fontWeight: 700 }}
+                                >
+                                    <span>🛡️ Admin Suite</span>
+                                </NavLink>
+                            )}
                         </div>
 
                         <div className="mobile-footer-info">
                             <div className="mobile-contact-line">
                                 <PhoneCall size={16} />
-                                <span>+94 (11) 234-5678</span>
+                                <span>{siteSettings?.storePhone || "+94 (11) 234-5678"}</span>
                             </div>
-                            <p className="mobile-hours">Mon - Sat: 9:00 AM - 7:00 PM</p>
+                            <p className="mobile-hours">{siteSettings?.storeHours || "Mon - Sun: 8:30 AM - 7:30 PM"}</p>
                         </div>
                     </div>
                 </div>

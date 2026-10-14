@@ -14,8 +14,11 @@ import {
     CheckCircle2
 } from "lucide-react";
 
+import { useStore } from "../context/StoreContext";
+
 function Contact() {
     const { showToast } = useCart();
+    const { createMessage } = useStore();
 
     const [form, setForm] = useState({
         name: "",
@@ -53,6 +56,12 @@ function Contact() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        createMessage({
+            name: form.name,
+            email: form.email,
+            subject: form.subject,
+            message: form.message
+        });
         setSubmitted(true);
         showToast("Message sent! Our botanists will reply within 24 hours. 🌿");
         setForm({ name: "", email: "", subject: "care", message: "" });

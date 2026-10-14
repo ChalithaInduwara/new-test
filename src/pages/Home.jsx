@@ -15,8 +15,11 @@ import {
     Heart
 } from "lucide-react";
 
+import { useStore } from "../context/StoreContext";
+
 function Home() {
     const { products, setSelectedCategory } = useProducts();
+    const { siteSettings } = useStore();
     const navigate = useNavigate();
 
     // Featured items
@@ -36,16 +39,16 @@ function Home() {
                         <div className="hero-content">
                             <div className="hero-pill-badge">
                                 <Sparkles size={14} />
-                                <span>Spring Nursery Release • 2026 Collection</span>
+                                <span>{siteSettings?.heroBadge || "Spring Nursery Release • 2026 Collection"}</span>
                             </div>
 
                             <h1 className="hero-title">
-                                Living Art for <em>Mindful</em> Spaces.
+                                {siteSettings?.heroTitle || "Living Art for Mindful Spaces."}
                             </h1>
 
                             <p className="hero-subtitle">
-                                Hand-trained Japanese bonsai, resilient architectural cacti, and hand-thrown
-                                ceramic pots—cultivated with botanical expertise to purify your home and workspace.
+                                {siteSettings?.heroSubtitle ||
+                                    "Hand-trained Japanese bonsai, resilient architectural cacti, and hand-thrown ceramic pots—cultivated with botanical expertise to purify your home and workspace."}
                             </p>
 
                             <div className="hero-cta-group">

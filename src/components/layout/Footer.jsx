@@ -13,10 +13,15 @@ import {
 } from "lucide-react";
 import { useCart } from "../../context/CartContext";
 
+import { useStore } from "../../context/StoreContext";
+import { useAuth } from "../../context/AuthContext";
+
 function Footer() {
     const [email, setEmail] = useState("");
     const [subscribed, setSubscribed] = useState(false);
     const { showToast } = useCart();
+    const { siteSettings } = useStore();
+    const { isAdmin } = useAuth();
 
     const handleSubscribe = (e) => {
         e.preventDefault();
@@ -73,7 +78,7 @@ function Footer() {
                             <div className="brand-icon-wrapper">
                                 <Leaf size={22} className="brand-leaf-icon" />
                             </div>
-                            <span className="brand-title">Leaf &amp; Clay</span>
+                            <span className="brand-title">{siteSettings?.storeName || "Leaf & Clay"}</span>
                         </div>
                         <p className="footer-tagline">
                             We cultivate indoor harmony by pairing hand-pruned specimen plants with artisanal
@@ -82,15 +87,15 @@ function Footer() {
                         <div className="footer-contact-items">
                             <div className="contact-item">
                                 <MapPin size={16} />
-                                <span>No. 42 Botanical Gardens Road, Colombo 07</span>
+                                <span>{siteSettings?.storeAddress || "No. 42 Botanical Gardens Road, Colombo 07"}</span>
                             </div>
                             <div className="contact-item">
                                 <Phone size={16} />
-                                <span>+94 (11) 234-5678</span>
+                                <span>{siteSettings?.storePhone || "+94 (11) 234-5678"}</span>
                             </div>
                             <div className="contact-item">
                                 <Mail size={16} />
-                                <span>hello@leafandclay.lk</span>
+                                <span>{siteSettings?.storeEmail || "hello@leafandclay.lk"}</span>
                             </div>
                         </div>
                     </div>
@@ -112,10 +117,10 @@ function Footer() {
                         <h4 className="footer-heading">Customer Care</h4>
                         <ul className="footer-links">
                             <li><Link to="/about">Our Sustainable Mission</Link></li>
-                            <li><Link to="/contact">Plant Care Assistance</Link></li>
-                            <li><Link to="/cart">Review Your Cart</Link></li>
-                            <li><Link to="/checkout">Fast Checkout</Link></li>
                             <li><Link to="/contact">Shipping &amp; Refund Policy</Link></li>
+                            {isAdmin && (
+                                <li><Link to="/admin" style={{ color: "var(--color-terracotta)", fontWeight: 700 }}>Store Admin Portal</Link></li>
+                            )}
                         </ul>
                     </div>
 

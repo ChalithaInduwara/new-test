@@ -13,6 +13,9 @@ import {
     ChevronRight
 } from "lucide-react";
 
+import { useStore } from "../context/StoreContext";
+import { useAuth } from "../context/AuthContext";
+
 function Checkout() {
     const {
         cart,
@@ -22,17 +25,19 @@ function Checkout() {
         couponCode,
         clearCart
     } = useCart();
+    const { createOrder } = useStore();
+    const { currentUser } = useAuth();
     const navigate = useNavigate();
 
     // Form states
     const [formData, setFormData] = useState({
-        email: "dilshan.perera@example.com",
-        phone: "+94 77 123 4567",
-        firstName: "Dilshan",
-        lastName: "Perera",
-        address: "45/2 Lotus Grove, Havelock Road",
-        city: "Colombo 05",
-        postalCode: "00500",
+        email: currentUser?.email || "dilshan.perera@example.com",
+        phone: currentUser?.phone || "+94 77 123 4567",
+        firstName: currentUser?.name ? currentUser.name.split(" ")[0] : "Dilshan",
+        lastName: currentUser?.name ? currentUser.name.split(" ").slice(1).join(" ") : "Perera",
+        address: currentUser?.address || "45/2 Lotus Grove, Havelock Road",
+        city: currentUser?.city || "Colombo 05",
+        postalCode: currentUser?.postalCode || "00500",
         notes: "Please call upon arrival at the gate."
     });
 
@@ -62,12 +67,32 @@ function Checkout() {
         setIsSubmitting(true);
 
         setTimeout(() => {
-            const randomNum = Math.floor(1000 + Math.random() * 9000);
-            setOrderNumber(`LC-${randomNum}`);
+            const savedOrder = createOrder({
+                userId: currentUser?.id || null,
+                customer: formData,
+                items: cart.map((item) => ({
+                    id: item.product?.id || item.id,
+                    name: item.product?.name || "Botanical Item",
+                    category: item.product?.category || "Plants",
+                    price: item.product?.price || 0,
+                    quantity: item.quantity,
+                    image: item.product?.image || ""
+                })),
+                subtotal: cartSubtotal,
+                discountAmount,
+                couponCode,
+                shippingMethod,
+                shippingFee: shippingCost,
+                total: grandTotal,
+                paymentMethod,
+                status: "Pending"
+            });
+
+            setOrderNumber(savedOrder.id);
             setIsSubmitting(false);
             setOrderComplete(true);
             clearCart();
-        }, 1200);
+        }, 1000);
     };
 
     if (cart.length === 0 && !orderComplete) {
