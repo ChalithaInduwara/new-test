@@ -147,49 +147,28 @@ function Navbar() {
                         </span>
                     </button>
 
-                    {/* User Account / Sign In Pill */}
+                    {/* User Account / Sign In Button */}
                     {isAuthenticated ? (
                         <Link
                             to="/account"
-                            style={{
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "0.45rem",
-                                padding: "0.4rem 0.85rem",
-                                borderRadius: "var(--radius-full)",
-                                backgroundColor: "var(--color-emerald-ultra-light)",
-                                border: "1px solid var(--color-border)",
-                                color: "var(--color-text-main)",
-                                textDecoration: "none",
-                                fontSize: "0.85rem",
-                                fontWeight: 600
-                            }}
+                            className="nav-auth-btn"
                             title={`Account: ${currentUser.name}`}
+                            aria-label={`Account: ${currentUser.name}`}
                         >
-                            <User size={16} color="var(--color-forest)" />
-                            <span style={{ maxWidth: "110px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                            <User size={18} />
+                            <span className="nav-auth-text">
                                 {currentUser.name.split(" ")[0]}
                             </span>
                         </Link>
                     ) : (
                         <Link
                             to="/login"
-                            style={{
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "0.4rem",
-                                padding: "0.4rem 0.85rem",
-                                borderRadius: "var(--radius-full)",
-                                backgroundColor: "var(--color-emerald-ultra-light)",
-                                border: "1px solid var(--color-border)",
-                                color: "var(--color-forest)",
-                                textDecoration: "none",
-                                fontSize: "0.85rem",
-                                fontWeight: 600
-                            }}
+                            className="nav-auth-btn"
+                            title="Sign In / Register"
+                            aria-label="Sign In"
                         >
-                            <User size={16} />
-                            <span>Sign In</span>
+                            <User size={18} />
+                            <span className="nav-auth-text">Sign In</span>
                         </Link>
                     )}
 
