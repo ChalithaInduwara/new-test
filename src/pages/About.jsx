@@ -51,10 +51,10 @@ function About() {
                     </div>
 
                     <div className="about-story-img-frame">
-                        <img
-                            src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=1000&q=80"
-                            alt="Botanist tending to lush greenhouse plants"
-                        />
+                        <div className="about-placeholder-visual">
+                            <Leaf size={56} strokeWidth={1.2} />
+                            <span>Our Nursery Story</span>
+                        </div>
                     </div>
                 </div>
 

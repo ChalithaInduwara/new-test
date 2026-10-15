@@ -9,22 +9,7 @@ export function CartProvider({ children }) {
     const [cart, setCart] = useState(() => {
         try {
             const saved = localStorage.getItem("leaf_clay_cart");
-            return saved ? JSON.parse(saved) : [
-                // Friendly default item showcasing botanical cart
-                {
-                    id: "mini-bonsai-tree",
-                    product: {
-                        id: "mini-bonsai-tree",
-                        name: "Japanese Juniper Bonsai",
-                        botanicalName: "Juniperus procumbens 'Nana'",
-                        category: "Bonsai",
-                        price: 2500,
-                        image: "https://images.unsplash.com/photo-1512428813834-c702c7702b78?auto=format&fit=crop&w=900&q=80",
-                        badge: "Best Seller"
-                    },
-                    quantity: 1
-                }
-            ];
+            return saved ? JSON.parse(saved) : [];
         } catch {
             return [];
         }

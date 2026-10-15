@@ -110,15 +110,10 @@ export function ProductProvider({ children }) {
             inStock: productData.inStock !== false,
             stockCount: Number(productData.stockCount) || 10,
             badge: productData.badge || "",
-            image:
-                productData.image ||
-                "https://images.unsplash.com/photo-1512428813834-c702c7702b78?auto=format&fit=crop&w=900&q=80",
+            image: productData.image || "",
             gallery: productData.gallery?.length
                 ? productData.gallery
-                : [
-                      productData.image ||
-                          "https://images.unsplash.com/photo-1512428813834-c702c7702b78?auto=format&fit=crop&w=900&q=80"
-                  ],
+                : productData.image ? [productData.image] : [],
             shortDescription: productData.shortDescription || "",
             description: productData.description || "",
             care: {

@@ -400,3 +400,33 @@ img {
         transform: translateY(0) scale(1);
     }
 }
+
+/* ========================================================
+   PLACEHOLDER VISUALS (replaces removed pre-entered images)
+   ======================================================== */
+.hero-placeholder-visual,
+.about-placeholder-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    min-height: 340px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(145deg, var(--color-emerald-light), var(--color-sand-light));
+    border: 2px dashed var(--color-border);
+    color: var(--color-sage);
+    text-align: center;
+    padding: 2rem;
+}
+
+.hero-placeholder-visual span,
+.about-placeholder-visual span {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    letter-spacing: 0.01em;
+}
+

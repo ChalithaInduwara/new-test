@@ -82,10 +82,10 @@ function Home() {
 
                         <div className="hero-media-wrapper">
                             <div className="hero-main-card">
-                                <img
-                                    src="https://images.unsplash.com/photo-1545241047-6083a3684587?auto=format&fit=crop&w=1000&q=80"
-                                    alt="Lush indoor bonsai and plants in ceramic pots"
-                                />
+                                <div className="hero-placeholder-visual">
+                                    <Leaf size={64} strokeWidth={1.2} />
+                                    <span>Your Botanical Collection</span>
+                                </div>
                             </div>
                             <div className="hero-floating-badge">
                                 <div className="badge-icon-plant">
@@ -180,18 +180,34 @@ function Home() {
                         </p>
                     </div>
 
-                    <div className="products-grid">
-                        {featuredProducts.map((product) => (
-                            <ProductCard key={product.id} product={product} />
-                        ))}
-                    </div>
+                    {featuredProducts.length > 0 ? (
+                        <>
+                            <div className="products-grid">
+                                {featuredProducts.map((product) => (
+                                    <ProductCard key={product.id} product={product} />
+                                ))}
+                            </div>
 
-                    <div style={{ textAlign: "center", marginTop: "3.5rem" }}>
-                        <Link to="/shop" className="btn btn-outline btn-lg">
-                            <span>View Full Collection ({products.length} Items)</span>
-                            <ArrowRight size={18} />
-                        </Link>
-                    </div>
+                            <div style={{ textAlign: "center", marginTop: "3.5rem" }}>
+                                <Link to="/shop" className="btn btn-outline btn-lg">
+                                    <span>View Full Collection ({products.length} Items)</span>
+                                    <ArrowRight size={18} />
+                                </Link>
+                            </div>
+                        </>
+                    ) : (
+                        <div className="empty-catalog-state" style={{ padding: "3rem 1.5rem" }}>
+                            <Sparkles size={44} style={{ color: "var(--color-sage)", marginBottom: "1rem" }} />
+                            <h3 className="empty-catalog-title">No products added yet</h3>
+                            <p className="empty-catalog-text">
+                                Add your first products through the admin panel to see them featured here.
+                            </p>
+                            <Link to="/shop" className="btn btn-primary">
+                                <span>Visit Shop</span>
+                                <ArrowRight size={18} />
+                            </Link>
+                        </div>
+                    )}
                 </div>
             </section>
 

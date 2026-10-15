@@ -17,41 +17,6 @@ import {
     List
 } from "lucide-react";
 
-const IMAGE_PRESETS = [
-    {
-        name: "Japanese Juniper Bonsai",
-        url: "https://images.unsplash.com/photo-1512428813834-c702c7702b78?auto=format&fit=crop&w=900&q=80"
-    },
-    {
-        name: "Chinese Elm Bonsai",
-        url: "https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=900&q=80"
-    },
-    {
-        name: "Golden Barrel Cactus",
-        url: "https://images.unsplash.com/photo-1509587584298-0f3b3a3a1797?auto=format&fit=crop&w=900&q=80"
-    },
-    {
-        name: "Moon Cactus Duo",
-        url: "https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?auto=format&fit=crop&w=900&q=80"
-    },
-    {
-        name: "Rosette Echeveria",
-        url: "https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=900&q=80"
-    },
-    {
-        name: "Hand-Thrown Terracotta",
-        url: "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=900&q=80"
-    },
-    {
-        name: "Fiddle Leaf Fig Tree",
-        url: "https://images.unsplash.com/photo-1545241047-6083a3684587?auto=format&fit=crop&w=900&q=80"
-    },
-    {
-        name: "Snake Plant Sansevieria",
-        url: "https://images.unsplash.com/photo-1599598425947-5202edd564c5?auto=format&fit=crop&w=900&q=80"
-    }
-];
-
 const EMPTY_PRODUCT_FORM = {
     name: "",
     botanicalName: "",
@@ -61,17 +26,17 @@ const EMPTY_PRODUCT_FORM = {
     stockCount: 10,
     inStock: true,
     badge: "",
-    image: IMAGE_PRESETS[0].url,
+    image: "",
     shortDescription: "",
     description: "",
     care: {
-        light: "Bright indirect morning light",
-        water: "When top inch of soil feels dry",
-        humidity: "Moderate (50-60%)",
+        light: "",
+        water: "",
+        humidity: "",
         difficulty: "Easy",
         petFriendly: true,
-        potSize: "16 cm Glazed Ceramic",
-        height: "25 - 35 cm"
+        potSize: "",
+        height: ""
     }
 };
 
