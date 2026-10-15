@@ -256,11 +256,17 @@ export function AdminDashboard({ setActiveTab }) {
                                         }}
                                     >
                                         <div style={{ display: "flex", alignItems: "center", gap: "0.65rem" }}>
-                                            <img
-                                                src={p.image}
-                                                alt={p.name}
-                                                style={{ width: "36px", height: "36px", borderRadius: "6px", objectFit: "cover" }}
-                                            />
+                                            {p.image ? (
+                                                <img
+                                                    src={p.image}
+                                                    alt={p.name}
+                                                    style={{ width: "36px", height: "36px", borderRadius: "6px", objectFit: "cover" }}
+                                                />
+                                            ) : (
+                                                <div style={{ width: "36px", height: "36px", borderRadius: "6px", backgroundColor: "var(--color-emerald-ultra-light, #f0f7f4)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--color-forest, #2d5a43)" }}>
+                                                    <Leaf size={18} />
+                                                </div>
+                                            )}
                                             <div>
                                                 <div style={{ fontSize: "0.85rem", fontWeight: 600 }}>{p.name}</div>
                                                 <div style={{ fontSize: "0.75rem", color: p.stockCount === 0 ? "#dc2626" : "#d97706", fontWeight: 700 }}>

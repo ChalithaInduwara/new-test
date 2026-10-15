@@ -18,7 +18,7 @@ import { useStore } from "../context/StoreContext";
 
 function Contact() {
     const { showToast } = useCart();
-    const { createMessage } = useStore();
+    const { createMessage, siteSettings } = useStore();
 
     const [form, setForm] = useState({
         name: "",
@@ -180,22 +180,29 @@ function Contact() {
                             </h3>
 
                             <div className="footer-contact-items" style={{ color: "var(--color-text-main)", marginBottom: "1.5rem" }}>
-                                <div className="contact-item">
-                                    <MapPin size={20} style={{ color: "var(--color-sage)" }} />
-                                    <span>No. 42 Botanical Gardens Road, Colombo 07, Sri Lanka</span>
-                                </div>
-                                <div className="contact-item">
-                                    <Phone size={20} style={{ color: "var(--color-sage)" }} />
-                                    <span>+94 (11) 234-5678</span>
-                                </div>
-                                <div className="contact-item">
-                                    <MessageCircle size={20} style={{ color: "var(--color-sage)" }} />
-                                    <span>WhatsApp Care Hotline: +94 (77) 890-1234</span>
-                                </div>
-                                <div className="contact-item">
-                                    <Mail size={20} style={{ color: "var(--color-sage)" }} />
-                                    <span>hello@leafandclay.lk</span>
-                                </div>
+                                {siteSettings?.storeAddress ? (
+                                    <div className="contact-item">
+                                        <MapPin size={20} style={{ color: "var(--color-sage)" }} />
+                                        <span>{siteSettings.storeAddress}</span>
+                                    </div>
+                                ) : null}
+                                {siteSettings?.storePhone ? (
+                                    <div className="contact-item">
+                                        <Phone size={20} style={{ color: "var(--color-sage)" }} />
+                                        <span>{siteSettings.storePhone}</span>
+                                    </div>
+                                ) : null}
+                                {siteSettings?.storeEmail ? (
+                                    <div className="contact-item">
+                                        <Mail size={20} style={{ color: "var(--color-sage)" }} />
+                                        <span>{siteSettings.storeEmail}</span>
+                                    </div>
+                                ) : null}
+                                {!siteSettings?.storeAddress && !siteSettings?.storePhone && !siteSettings?.storeEmail && (
+                                    <p style={{ color: "var(--color-text-muted)", fontSize: "0.9rem" }}>
+                                        Send us a direct message using the form to reach our store botanists.
+                                    </p>
+                                )}
                             </div>
 
                             <h4 style={{ fontSize: "1rem", marginBottom: "0.75rem", color: "var(--color-forest)", display: "flex", alignItems: "center", gap: "0.4rem" }}>

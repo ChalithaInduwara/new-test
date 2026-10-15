@@ -230,7 +230,7 @@ export function Admin() {
                         }}
                     >
                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.35rem" }}>
-                            <span style={{ fontWeight: 700, color: "var(--color-forest)" }}>Default Demo Credentials:</span>
+                            <span style={{ fontWeight: 700, color: "var(--color-forest)" }}>Default Administrator Access:</span>
                             <button
                                 type="button"
                                 onClick={handleAutofillDemo}

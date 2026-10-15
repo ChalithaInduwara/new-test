@@ -8,7 +8,8 @@ import {
     CheckCircle2,
     Sparkles,
     ShieldCheck,
-    ChevronRight
+    ChevronRight,
+    Leaf
 } from "lucide-react";
 
 function Cart() {
@@ -108,7 +109,13 @@ function Cart() {
                         {cart.map((item) => (
                             <div key={item.id} className="cart-item-row">
                                 <Link to={`/product/${item.id}`} className="cart-item-image">
-                                    <img src={item.product.image} alt={item.product.name} />
+                                    {item.product.image ? (
+                                        <img src={item.product.image} alt={item.product.name} />
+                                    ) : (
+                                        <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "var(--color-emerald-ultra-light, #f0f7f4)", color: "var(--color-forest, #2d5a43)" }}>
+                                            <Leaf size={24} />
+                                        </div>
+                                    )}
                                 </Link>
 
                                 <div className="cart-item-info">

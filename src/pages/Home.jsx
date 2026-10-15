@@ -70,12 +70,12 @@ function Home() {
                                     <span className="stat-label">Live Arrival Guarantee</span>
                                 </div>
                                 <div className="hero-stat-item">
-                                    <span className="stat-number">15,000+</span>
-                                    <span className="stat-label">Homes Greened</span>
+                                    <span className="stat-number">Organic</span>
+                                    <span className="stat-label">Living Potting Blend</span>
                                 </div>
                                 <div className="hero-stat-item">
-                                    <span className="stat-number">4.9 ★</span>
-                                    <span className="stat-label">Botanical Rating</span>
+                                    <span className="stat-number">Handmade</span>
+                                    <span className="stat-label">Artisan Earthware</span>
                                 </div>
                             </div>
                         </div>

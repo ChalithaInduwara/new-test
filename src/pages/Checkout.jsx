@@ -31,14 +31,14 @@ function Checkout() {
 
     // Form states
     const [formData, setFormData] = useState({
-        email: currentUser?.email || "dilshan.perera@example.com",
-        phone: currentUser?.phone || "+94 77 123 4567",
-        firstName: currentUser?.name ? currentUser.name.split(" ")[0] : "Dilshan",
-        lastName: currentUser?.name ? currentUser.name.split(" ").slice(1).join(" ") : "Perera",
-        address: currentUser?.address || "45/2 Lotus Grove, Havelock Road",
-        city: currentUser?.city || "Colombo 05",
-        postalCode: currentUser?.postalCode || "00500",
-        notes: "Please call upon arrival at the gate."
+        email: currentUser?.email || "",
+        phone: currentUser?.phone || "",
+        firstName: currentUser?.name ? currentUser.name.split(" ")[0] : "",
+        lastName: currentUser?.name ? currentUser.name.split(" ").slice(1).join(" ") : "",
+        address: currentUser?.address || "",
+        city: currentUser?.city || "",
+        postalCode: currentUser?.postalCode || "",
+        notes: ""
     });
 
     const [shippingMethod, setShippingMethod] = useState("standard");
@@ -439,7 +439,13 @@ function Checkout() {
                             <div style={{ marginBottom: "1.25rem" }}>
                                 {cart.map((item) => (
                                     <div key={item.id} className="checkout-mini-item">
-                                        <img src={item.product.image} alt={item.product.name} />
+                                        {item.product.image ? (
+                                            <img src={item.product.image} alt={item.product.name} />
+                                        ) : (
+                                            <div style={{ width: "48px", height: "48px", borderRadius: "6px", backgroundColor: "var(--color-emerald-ultra-light, #f0f7f4)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--color-forest, #2d5a43)", flexShrink: 0 }}>
+                                                <Leaf size={20} />
+                                            </div>
+                                        )}
                                         <div style={{ flex: 1 }}>
                                             <div className="checkout-mini-title">{item.product.name}</div>
                                             <div className="checkout-mini-qty">

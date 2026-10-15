@@ -6,9 +6,11 @@ const CartContext = createContext();
 export function CartProvider({ children }) {
     const { siteSettings, validateCoupon } = useStore();
 
+    const CART_STORAGE_KEY = "leaf_clay_cart_v3";
+
     const [cart, setCart] = useState(() => {
         try {
-            const saved = localStorage.getItem("leaf_clay_cart");
+            const saved = localStorage.getItem(CART_STORAGE_KEY);
             return saved ? JSON.parse(saved) : [];
         } catch {
             return [];
@@ -22,7 +24,7 @@ export function CartProvider({ children }) {
 
     useEffect(() => {
         try {
-            localStorage.setItem("leaf_clay_cart", JSON.stringify(cart));
+            localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
         } catch (e) {
             console.error("Failed to save cart to localStorage", e);
         }

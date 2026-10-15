@@ -4,8 +4,8 @@ import { PRODUCTS, CATEGORIES } from "../data/products";
 const ProductContext = createContext();
 
 const STORAGE_KEYS = {
-    PRODUCTS: "leaf_clay_products_v1",
-    CATEGORIES: "leaf_clay_categories_v1"
+    PRODUCTS: "leaf_clay_products_v3",
+    CATEGORIES: "leaf_clay_categories_v3"
 };
 
 export function ProductProvider({ children }) {
@@ -100,15 +100,15 @@ export function ProductProvider({ children }) {
 
         const newProduct = {
             id,
-            name: productData.name || "Untitled Botanical",
-            botanicalName: productData.botanicalName || "Specimen botanical",
-            category: productData.category || "Succulents",
-            price: Number(productData.price) || 990,
+            name: productData.name || "Untitled Product",
+            botanicalName: productData.botanicalName || "",
+            category: productData.category || "All Items",
+            price: Number(productData.price) || 0,
             originalPrice: productData.originalPrice ? Number(productData.originalPrice) : null,
-            rating: Number(productData.rating) || 5.0,
-            reviewsCount: Number(productData.reviewsCount) || 1,
+            rating: productData.rating ? Number(productData.rating) : null,
+            reviewsCount: Number(productData.reviewsCount) || 0,
             inStock: productData.inStock !== false,
-            stockCount: Number(productData.stockCount) || 10,
+            stockCount: Number(productData.stockCount) || 0,
             badge: productData.badge || "",
             image: productData.image || "",
             gallery: productData.gallery?.length
@@ -117,13 +117,13 @@ export function ProductProvider({ children }) {
             shortDescription: productData.shortDescription || "",
             description: productData.description || "",
             care: {
-                light: productData.care?.light || "Bright indirect sunlight",
-                water: productData.care?.water || "Water when topsoil feels dry",
-                humidity: productData.care?.humidity || "Moderate (40-60%)",
+                light: productData.care?.light || "",
+                water: productData.care?.water || "",
+                humidity: productData.care?.humidity || "",
                 difficulty: productData.care?.difficulty || "Easy",
                 petFriendly: Boolean(productData.care?.petFriendly),
-                potSize: productData.care?.potSize || "14 cm Glazed Stoneware",
-                height: productData.care?.height || "20 - 30 cm"
+                potSize: productData.care?.potSize || "",
+                height: productData.care?.height || ""
             }
         };
 
@@ -219,6 +219,8 @@ export function ProductProvider({ children }) {
     const resetProductsAndCategories = () => {
         localStorage.removeItem(STORAGE_KEYS.PRODUCTS);
         localStorage.removeItem(STORAGE_KEYS.CATEGORIES);
+        localStorage.removeItem("leaf_clay_products_v1");
+        localStorage.removeItem("leaf_clay_categories_v1");
         setProducts(PRODUCTS);
         setRawCategories(CATEGORIES);
     };

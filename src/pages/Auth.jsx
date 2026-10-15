@@ -141,11 +141,6 @@ export function Auth() {
         }, 400);
     };
 
-    const autofillDemoCustomer = () => {
-        setLoginIdentifier("dilshan");
-        setLoginPassword("customer123");
-        setErrorMessage("");
-    };
 
     return (
         <div style={{ backgroundColor: "var(--color-sand-light, #fcf9f5)", minHeight: "85vh", padding: "3rem 1.5rem", display: "flex", alignItems: "center", justifyContent: "center" }}>
@@ -297,7 +292,7 @@ export function Auth() {
                                     style={{ width: "100%", paddingLeft: "2.3rem" }}
                                     value={loginIdentifier}
                                     onChange={(e) => setLoginIdentifier(e.target.value)}
-                                    placeholder="dilshan or dilshan@example.com"
+                                    placeholder="Username or email address"
                                 />
                                 <User
                                     size={16}
@@ -350,30 +345,6 @@ export function Auth() {
                             <span>{isLoading ? "Signing in..." : "Sign In to Account"}</span>
                             <ArrowRight size={16} />
                         </button>
-
-                        {/* Customer autofill button */}
-                        <div
-                            style={{
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "space-between",
-                                padding: "0.65rem 0.85rem",
-                                borderRadius: "var(--radius-sm)",
-                                backgroundColor: "var(--color-emerald-ultra-light)",
-                                fontSize: "0.8rem",
-                                marginTop: "0.5rem"
-                            }}
-                        >
-                            <span style={{ color: "var(--color-text-muted)" }}>Demo Customer Login:</span>
-                            <button
-                                type="button"
-                                onClick={autofillDemoCustomer}
-                                className="admin-btn admin-btn-secondary admin-btn-sm"
-                                style={{ padding: "0.2rem 0.6rem", fontSize: "0.74rem" }}
-                            >
-                                Fill Demo Customer
-                            </button>
-                        </div>
                     </form>
                 ) : (
                     /* SIGN UP FORM */
@@ -387,7 +358,7 @@ export function Auth() {
                                     required
                                     value={signupForm.name}
                                     onChange={(e) => setSignupForm({ ...signupForm, name: e.target.value })}
-                                    placeholder="e.g. Dilshan Perera"
+                                    placeholder="Your full name"
                                 />
                             </div>
 
@@ -399,7 +370,7 @@ export function Auth() {
                                     required
                                     value={signupForm.username}
                                     onChange={(e) => setSignupForm({ ...signupForm, username: e.target.value })}
-                                    placeholder="dilshan"
+                                    placeholder="Unique username"
                                 />
                             </div>
 
@@ -411,7 +382,7 @@ export function Auth() {
                                     required
                                     value={signupForm.email}
                                     onChange={(e) => setSignupForm({ ...signupForm, email: e.target.value })}
-                                    placeholder="dilshan@example.com"
+                                    placeholder="your.email@example.com"
                                 />
                             </div>
 
@@ -422,7 +393,7 @@ export function Auth() {
                                     className="admin-input"
                                     value={signupForm.phone}
                                     onChange={(e) => setSignupForm({ ...signupForm, phone: e.target.value })}
-                                    placeholder="+94 77 123 4567"
+                                    placeholder="Phone number"
                                 />
                             </div>
 

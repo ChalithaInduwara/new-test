@@ -15,7 +15,8 @@ import {
     ChevronRight,
     HeartHandshake,
     Sparkles,
-    Check
+    Check,
+    Leaf
 } from "lucide-react";
 
 function Product() {
@@ -79,15 +80,22 @@ function Product() {
                     {/* Media Gallery */}
                     <div className="product-gallery-section">
                         <div className="gallery-main-frame">
-                            <img
-                                src={gallery[selectedImageIndex] || product.image}
-                                alt={product.name}
-                            />
+                            {gallery[selectedImageIndex] || product.image ? (
+                                <img
+                                    src={gallery[selectedImageIndex] || product.image}
+                                    alt={product.name}
+                                />
+                            ) : (
+                                <div className="detail-placeholder-visual">
+                                    <Leaf size={64} strokeWidth={1.2} />
+                                    <span>Botanical Specimen</span>
+                                </div>
+                            )}
                         </div>
 
-                        {gallery.length > 1 && (
+                        {gallery.filter(Boolean).length > 1 && (
                             <div className="gallery-thumbnails-row">
-                                {gallery.map((imgUrl, index) => (
+                                {gallery.filter(Boolean).map((imgUrl, index) => (
                                     <button
                                         key={index}
                                         onClick={() => setSelectedImageIndex(index)}
@@ -113,23 +121,25 @@ function Product() {
                         </div>
 
                         <h1 className="detail-title">{product.name}</h1>
-                        <p className="detail-botanical">{product.botanicalName}</p>
+                        {product.botanicalName && <p className="detail-botanical">{product.botanicalName}</p>}
 
-                        <div className="detail-rating-row">
-                            <div className="rating-stars">
-                                <Star size={16} fill="currentColor" />
-                                <strong style={{ marginLeft: "4px" }}>{product.rating}</strong>
+                        {product.rating ? (
+                            <div className="detail-rating-row">
+                                <div className="rating-stars">
+                                    <Star size={16} fill="currentColor" />
+                                    <strong style={{ marginLeft: "4px" }}>{product.rating}</strong>
+                                </div>
+                                <span className="rating-count">
+                                    ({product.reviewsCount || 0} reviews)
+                                </span>
                             </div>
-                            <span className="rating-count">
-                                ({product.reviewsCount} verified plant parent reviews)
-                            </span>
-                        </div>
+                        ) : null}
 
                         <div className="detail-price-box">
-                            <span className="detail-price-main">Rs. {product.price.toLocaleString()}</span>
+                            <span className="detail-price-main">Rs. {(Number(product.price) || 0).toLocaleString()}</span>
                             {product.originalPrice && (
                                 <span className="detail-price-old">
-                                    Rs. {product.originalPrice.toLocaleString()}
+                                    Rs. {Number(product.originalPrice).toLocaleString()}
                                 </span>
                             )}
                             {discountPercentage && (

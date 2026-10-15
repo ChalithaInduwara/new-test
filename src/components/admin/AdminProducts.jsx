@@ -232,11 +232,17 @@ export function AdminProducts() {
                                             <tr key={p.id}>
                                                 <td>
                                                     <div className="product-cell">
-                                                        <img
-                                                            src={p.image}
-                                                            alt={p.name}
-                                                            className="product-thumb"
-                                                        />
+                                                        {p.image ? (
+                                                            <img
+                                                                src={p.image}
+                                                                alt={p.name}
+                                                                className="product-thumb"
+                                                            />
+                                                        ) : (
+                                                            <div className="product-thumb" style={{ display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: "var(--color-emerald-ultra-light, #f0f7f4)", color: "var(--color-forest, #2d5a43)" }}>
+                                                                <Leaf size={18} />
+                                                            </div>
+                                                        )}
                                                         <div>
                                                             <div className="product-cell-name">{p.name}</div>
                                                             <div className="product-cell-sub">{p.botanicalName}</div>
@@ -352,11 +358,18 @@ export function AdminProducts() {
                     {filteredProducts.map((p) => (
                         <div key={p.id} className="admin-card" style={{ display: "flex", flexDirection: "column" }}>
                             <div style={{ position: "relative", height: "180px", overflow: "hidden" }}>
-                                <img
-                                    src={p.image}
-                                    alt={p.name}
-                                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                                />
+                                {p.image ? (
+                                    <img
+                                        src={p.image}
+                                        alt={p.name}
+                                        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                                    />
+                                ) : (
+                                    <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", backgroundColor: "var(--color-emerald-ultra-light, #f0f7f4)", color: "var(--color-forest, #2d5a43)", gap: "0.5rem" }}>
+                                        <Leaf size={36} strokeWidth={1.5} />
+                                        <span style={{ fontSize: "0.8rem", color: "var(--color-text-muted)" }}>No photo</span>
+                                    </div>
+                                )}
                                 {p.badge && (
                                     <span
                                         style={{
@@ -541,30 +554,50 @@ export function AdminProducts() {
 
                                     {/* Image Selector */}
                                     <div className="admin-form-col-full admin-form-group">
-                                        <label className="admin-label">Image URL *</label>
+                                        <label className="admin-label">Product Image</label>
                                         <input
-                                            type="url"
+                                            type="text"
                                             className="admin-input"
-                                            required
                                             value={formData.image}
                                             onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                                            placeholder="https://..."
+                                            placeholder="Enter image URL (https://...)"
                                         />
-                                        <span className="admin-help-text">
-                                            Quick Presets: Select a botanical specimen photo below:
-                                        </span>
-                                        <div className="image-presets-row">
-                                            {IMAGE_PRESETS.map((preset, idx) => (
-                                                <img
-                                                    key={idx}
-                                                    src={preset.url}
-                                                    alt={preset.name}
-                                                    title={preset.name}
-                                                    className={`image-preset-thumb ${formData.image === preset.url ? "selected" : ""}`}
-                                                    onClick={() => setFormData({ ...formData, image: preset.url })}
-                                                />
-                                            ))}
+                                        <div style={{ marginTop: "0.5rem" }}>
+                                            <span style={{ fontSize: "0.8rem", color: "var(--color-text-muted)", display: "block", marginBottom: "0.25rem" }}>
+                                                Or upload photo from your device:
+                                            </span>
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                onChange={(e) => {
+                                                    const file = e.target.files?.[0];
+                                                    if (file) {
+                                                        const reader = new FileReader();
+                                                        reader.onload = (ev) => {
+                                                            setFormData((prev) => ({ ...prev, image: ev.target.result }));
+                                                        };
+                                                        reader.readAsDataURL(file);
+                                                    }
+                                                }}
+                                                style={{ fontSize: "0.82rem" }}
+                                            />
                                         </div>
+                                        {formData.image && (
+                                            <div style={{ marginTop: "0.6rem", display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                                                <img
+                                                    src={formData.image}
+                                                    alt="Preview"
+                                                    style={{ width: "56px", height: "56px", borderRadius: "6px", objectFit: "cover", border: "1px solid var(--color-border)" }}
+                                                />
+                                                <button
+                                                    type="button"
+                                                    className="admin-btn admin-btn-sm admin-btn-secondary"
+                                                    onClick={() => setFormData({ ...formData, image: "" })}
+                                                >
+                                                    Remove photo
+                                                </button>
+                                            </div>
+                                        )}
                                     </div>
 
                                     {/* Short Description */}

@@ -9,11 +9,11 @@ import {
 const StoreContext = createContext();
 
 const STORAGE_KEYS = {
-    ORDERS: "leaf_clay_orders_v1",
-    COUPONS: "leaf_clay_coupons_v1",
-    MESSAGES: "leaf_clay_messages_v1",
-    SETTINGS: "leaf_clay_settings_v1",
-    ADMIN_AUTH: "leaf_clay_admin_auth_v1"
+    ORDERS: "leaf_clay_orders_v3",
+    COUPONS: "leaf_clay_coupons_v3",
+    MESSAGES: "leaf_clay_messages_v3",
+    SETTINGS: "leaf_clay_settings_v3",
+    ADMIN_AUTH: "leaf_clay_admin_auth_v3"
 };
 
 export function StoreProvider({ children }) {
@@ -345,8 +345,16 @@ export function StoreProvider({ children }) {
             localStorage.removeItem(STORAGE_KEYS.COUPONS);
             localStorage.removeItem(STORAGE_KEYS.MESSAGES);
             localStorage.removeItem(STORAGE_KEYS.SETTINGS);
+            localStorage.removeItem("leaf_clay_orders_v1");
+            localStorage.removeItem("leaf_clay_coupons_v1");
+            localStorage.removeItem("leaf_clay_messages_v1");
+            localStorage.removeItem("leaf_clay_settings_v1");
             localStorage.removeItem("leaf_clay_products_v1");
             localStorage.removeItem("leaf_clay_categories_v1");
+            localStorage.removeItem("leaf_clay_products_v3");
+            localStorage.removeItem("leaf_clay_categories_v3");
+            localStorage.removeItem("leaf_clay_cart");
+            localStorage.removeItem("leaf_clay_cart_v3");
 
             setOrders(INITIAL_ORDERS);
             setCoupons(INITIAL_COUPONS);

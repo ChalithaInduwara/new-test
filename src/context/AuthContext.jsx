@@ -3,35 +3,23 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 const AuthContext = createContext();
 
 const STORAGE_KEYS = {
-    USERS: "leaf_clay_users_v2",
-    CURRENT_USER: "leaf_clay_current_user_v2",
-    ADMIN_AUTH: "leaf_clay_admin_auth_v2"
+    USERS: "leaf_clay_users_v3",
+    CURRENT_USER: "leaf_clay_current_user_v3",
+    ADMIN_AUTH: "leaf_clay_admin_auth_v3"
 };
 
-// Default seed users (Admin + Demo Customer)
+// Default store administrator account
 const INITIAL_USERS = [
     {
         id: "usr-admin",
-        name: "Botanical Store Administrator",
+        name: "Store Administrator",
         username: "admin",
         email: "admin@leafandclay.lk",
         password: "admin123",
         role: "admin",
-        phone: "+94 (11) 234-5678",
-        address: "No. 42 Botanical Gardens Road",
-        city: "Colombo 07"
-    },
-    {
-        id: "usr-customer-1",
-        name: "Dilshan Perera",
-        username: "dilshan",
-        email: "dilshan.perera@example.com",
-        password: "customer123",
-        role: "customer",
-        phone: "+94 77 123 4567",
-        address: "45/2 Lotus Grove, Havelock Road",
-        city: "Colombo 05",
-        postalCode: "00500"
+        phone: "",
+        address: "",
+        city: ""
     }
 ];
 

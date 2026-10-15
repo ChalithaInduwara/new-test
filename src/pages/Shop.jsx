@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useProducts } from "../context/ProductContext";
 import ProductCard from "../components/product/ProductCard";
-import { SlidersHorizontal, RotateCcw, Frown, ChevronRight, Filter, X } from "lucide-react";
+import { SlidersHorizontal, RotateCcw, Frown, ChevronRight, Filter, X, Sparkles } from "lucide-react";
 
 function Shop() {
     const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
     const {
+        products,
         categories,
         filteredProducts,
         selectedCategory,
@@ -199,6 +200,14 @@ function Shop() {
                                 {filteredProducts.map((product) => (
                                     <ProductCard key={product.id} product={product} />
                                 ))}
+                            </div>
+                        ) : products.length === 0 ? (
+                            <div className="empty-catalog-state">
+                                <Sparkles size={50} className="empty-catalog-icon" style={{ color: "var(--color-sage)" }} />
+                                <h3 className="empty-catalog-title">No products in the catalog yet</h3>
+                                <p className="empty-catalog-text">
+                                    The store is fresh and ready for inventory. Products added via the admin panel will display here.
+                                </p>
                             </div>
                         ) : (
                             <div className="empty-catalog-state">

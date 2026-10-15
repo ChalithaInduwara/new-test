@@ -15,7 +15,8 @@ import {
     FileText,
     AlertTriangle,
     Save,
-    Clock
+    Clock,
+    Leaf
 } from "lucide-react";
 
 export function AdminOrders() {
@@ -222,19 +223,39 @@ export function AdminOrders() {
                                             <td>
                                                 <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
                                                     {order.items?.slice(0, 3).map((item, idx) => (
-                                                        <img
-                                                            key={idx}
-                                                            src={item.image}
-                                                            alt={item.name}
-                                                            title={`${item.name} (x${item.quantity})`}
-                                                            style={{
-                                                                width: "28px",
-                                                                height: "28px",
-                                                                borderRadius: "4px",
-                                                                objectFit: "cover",
-                                                                border: "1px solid var(--color-border)"
-                                                            }}
-                                                        />
+                                                        item.image ? (
+                                                            <img
+                                                                key={idx}
+                                                                src={item.image}
+                                                                alt={item.name}
+                                                                title={`${item.name} (x${item.quantity})`}
+                                                                style={{
+                                                                    width: "28px",
+                                                                    height: "28px",
+                                                                    borderRadius: "4px",
+                                                                    objectFit: "cover",
+                                                                    border: "1px solid var(--color-border)"
+                                                                }}
+                                                            />
+                                                        ) : (
+                                                            <div
+                                                                key={idx}
+                                                                title={`${item.name} (x${item.quantity})`}
+                                                                style={{
+                                                                    width: "28px",
+                                                                    height: "28px",
+                                                                    borderRadius: "4px",
+                                                                    backgroundColor: "var(--color-emerald-ultra-light, #f0f7f4)",
+                                                                    display: "flex",
+                                                                    alignItems: "center",
+                                                                    justifyContent: "center",
+                                                                    color: "var(--color-forest, #2d5a43)",
+                                                                    border: "1px solid var(--color-border)"
+                                                                }}
+                                                            >
+                                                                <Leaf size={14} />
+                                                            </div>
+                                                        )
                                                     ))}
                                                     {order.items?.length > 3 && (
                                                         <span style={{ fontSize: "0.75rem", color: "var(--color-text-muted)" }}>
@@ -370,11 +391,17 @@ export function AdminOrders() {
                                                 <tr key={idx}>
                                                     <td>
                                                         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                                                            <img
-                                                                src={item.image}
-                                                                alt={item.name}
-                                                                style={{ width: "32px", height: "32px", borderRadius: "4px", objectFit: "cover" }}
-                                                            />
+                                                            {item.image ? (
+                                                                <img
+                                                                    src={item.image}
+                                                                    alt={item.name}
+                                                                    style={{ width: "32px", height: "32px", borderRadius: "4px", objectFit: "cover" }}
+                                                                />
+                                                            ) : (
+                                                                <div style={{ width: "32px", height: "32px", borderRadius: "4px", backgroundColor: "var(--color-emerald-ultra-light, #f0f7f4)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--color-forest, #2d5a43)" }}>
+                                                                    <Leaf size={16} />
+                                                                </div>
+                                                            )}
                                                             <span style={{ fontWeight: 600 }}>{item.name}</span>
                                                         </div>
                                                     </td>
@@ -499,7 +526,7 @@ export function AdminOrders() {
                                                     customer: { ...newOrderForm.customer, firstName: e.target.value }
                                                 })
                                             }
-                                            placeholder="Dilshan"
+                                            placeholder="First name"
                                         />
                                     </div>
 
@@ -515,7 +542,7 @@ export function AdminOrders() {
                                                     customer: { ...newOrderForm.customer, lastName: e.target.value }
                                                 })
                                             }
-                                            placeholder="Perera"
+                                            placeholder="Last name"
                                         />
                                     </div>
 
@@ -532,7 +559,7 @@ export function AdminOrders() {
                                                     customer: { ...newOrderForm.customer, phone: e.target.value }
                                                 })
                                             }
-                                            placeholder="+94 77 123 4567"
+                                            placeholder="Phone number"
                                         />
                                     </div>
 
@@ -564,7 +591,7 @@ export function AdminOrders() {
                                                     customer: { ...newOrderForm.customer, address: e.target.value }
                                                 })
                                             }
-                                            placeholder="45/2 Lotus Grove, Havelock Road"
+                                            placeholder="Street address, apartment, etc."
                                         />
                                     </div>
 

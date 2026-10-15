@@ -85,18 +85,24 @@ function Footer() {
                             ceramic pottery. Built for mindful homes and vibrant workspaces.
                         </p>
                         <div className="footer-contact-items">
-                            <div className="contact-item">
-                                <MapPin size={16} />
-                                <span>{siteSettings?.storeAddress || "No. 42 Botanical Gardens Road, Colombo 07"}</span>
-                            </div>
-                            <div className="contact-item">
-                                <Phone size={16} />
-                                <span>{siteSettings?.storePhone || "+94 (11) 234-5678"}</span>
-                            </div>
-                            <div className="contact-item">
-                                <Mail size={16} />
-                                <span>{siteSettings?.storeEmail || "hello@leafandclay.lk"}</span>
-                            </div>
+                            {siteSettings?.storeAddress ? (
+                                <div className="contact-item">
+                                    <MapPin size={16} />
+                                    <span>{siteSettings.storeAddress}</span>
+                                </div>
+                            ) : null}
+                            {siteSettings?.storePhone ? (
+                                <div className="contact-item">
+                                    <Phone size={16} />
+                                    <span>{siteSettings.storePhone}</span>
+                                </div>
+                            ) : null}
+                            {siteSettings?.storeEmail ? (
+                                <div className="contact-item">
+                                    <Mail size={16} />
+                                    <span>{siteSettings.storeEmail}</span>
+                                </div>
+                            ) : null}
                         </div>
                     </div>
 

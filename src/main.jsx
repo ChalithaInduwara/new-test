@@ -1,6 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+import { initializeCleanSlate } from "./utils/cleanSlate";
+
+// Purge any pre-entered demo records and cached images from previous sessions
+initializeCleanSlate();
 
 import App from "./App.jsx";
 

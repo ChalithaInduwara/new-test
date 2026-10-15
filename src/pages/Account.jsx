@@ -342,11 +342,17 @@ export function Account() {
                                                     {order.items?.map((item, idx) => (
                                                         <div key={idx} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: "0.88rem" }}>
                                                             <div style={{ display: "flex", alignItems: "center", gap: "0.65rem" }}>
-                                                                <img
-                                                                    src={item.image}
-                                                                    alt={item.name}
-                                                                    style={{ width: "36px", height: "36px", borderRadius: "6px", objectFit: "cover" }}
-                                                                />
+                                                                {item.image ? (
+                                                                    <img
+                                                                        src={item.image}
+                                                                        alt={item.name}
+                                                                        style={{ width: "36px", height: "36px", borderRadius: "6px", objectFit: "cover" }}
+                                                                    />
+                                                                ) : (
+                                                                    <div style={{ width: "36px", height: "36px", borderRadius: "6px", backgroundColor: "var(--color-emerald-ultra-light, #f0f7f4)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--color-forest, #2d5a43)" }}>
+                                                                        <Leaf size={18} />
+                                                                    </div>
+                                                                )}
                                                                 <div>
                                                                     <span style={{ fontWeight: 600 }}>{item.name}</span>
                                                                     <span style={{ color: "var(--color-text-muted)", marginLeft: "0.4rem" }}>

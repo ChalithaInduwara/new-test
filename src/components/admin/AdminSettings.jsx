@@ -78,13 +78,13 @@ export function AdminSettings() {
                     setForm(parsed.siteSettings);
                 }
                 if (parsed.products) {
-                    localStorage.setItem("leaf_clay_products_v1", JSON.stringify(parsed.products));
+                    localStorage.setItem("leaf_clay_products_v3", JSON.stringify(parsed.products));
                 }
                 if (parsed.orders) {
-                    localStorage.setItem("leaf_clay_orders_v1", JSON.stringify(parsed.orders));
+                    localStorage.setItem("leaf_clay_orders_v3", JSON.stringify(parsed.orders));
                 }
                 if (parsed.coupons) {
-                    localStorage.setItem("leaf_clay_coupons_v1", JSON.stringify(parsed.coupons));
+                    localStorage.setItem("leaf_clay_coupons_v3", JSON.stringify(parsed.coupons));
                 }
                 alert("Store data successfully imported! The page will refresh to apply all updates.");
                 window.location.reload();
