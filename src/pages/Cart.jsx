@@ -72,11 +72,8 @@ function Cart() {
                     <span>Cart ({cartCount} items)</span>
                 </div>
 
-                <div className="cart-header-section">
-                    <h1 className="cart-page-title">Your Botanical Cart</h1>
-                    <p style={{ color: "var(--color-text-muted)" }}>
-                        Review your selected plants and artisanal planters before proceeding to secure checkout.
-                    </p>
+                <div className="cart-header-section" style={{ marginBottom: "1.75rem" }}>
+                    <h1 className="cart-page-title" style={{ marginBottom: 0 }}>Your Botanical Cart</h1>
                 </div>
 
                 {/* Free Shipping Progress Card */}

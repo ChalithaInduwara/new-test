@@ -77,13 +77,9 @@ function Contact() {
                     <span>Contact &amp; Plant Care</span>
                 </div>
 
-                <div className="section-header" style={{ textAlign: "left", marginBottom: "3rem" }}>
+                <div className="section-header" style={{ textAlign: "left", marginBottom: "2.5rem" }}>
                     <span className="section-tagline">We're Here For You</span>
-                    <h1 className="section-title">Plant Care &amp; Studio Inquiries</h1>
-                    <p className="section-description">
-                        Whether you need diagnosing advice for a browning leaf, tracking updates, or custom pottery inquiries,
-                        our botanists and potters are ready to assist.
-                    </p>
+                    <h1 className="section-title" style={{ marginBottom: 0 }}>Plant Care &amp; Studio Inquiries</h1>
                 </div>
 
                 <div className="contact-grid">

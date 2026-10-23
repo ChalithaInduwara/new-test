@@ -42,16 +42,16 @@ function Shop() {
                     </div>
 
                     <div className="shop-header-content">
-                        <h1 className="section-title" style={{ marginBottom: "0.25rem" }}>
+                        <h1 className="section-title" style={{ marginBottom: 0 }}>
                             {selectedCategory === "all"
                                 ? "Botanical Nursery & Pottery"
                                 : `${selectedCategory} Collection`}
                         </h1>
-                        <p className="section-description">
-                            {searchQuery
-                                ? `Showing results matching "${searchQuery}"`
-                                : "Explore healthy acclimatized indoor plants, bonsai trees, and artisanal pottery designed for peaceful interiors."}
-                        </p>
+                        {searchQuery && (
+                            <p className="section-description" style={{ marginTop: "0.5rem" }}>
+                                Showing results matching "{searchQuery}"
+                            </p>
+                        )}
                     </div>
                 </div>
             </div>

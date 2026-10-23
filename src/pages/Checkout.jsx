@@ -121,11 +121,8 @@ function Checkout() {
                     <span>Secure Checkout</span>
                 </div>
 
-                <div className="cart-header-section">
-                    <h1 className="cart-page-title">Safe Botanical Checkout</h1>
-                    <p style={{ color: "var(--color-text-muted)" }}>
-                        Enter your shipping details below. Every order is safely packed in shock-proof transit pods.
-                    </p>
+                <div className="cart-header-section" style={{ marginBottom: "1.75rem" }}>
+                    <h1 className="cart-page-title" style={{ marginBottom: 0 }}>Safe Botanical Checkout</h1>
                 </div>
 
                 <div className="checkout-grid">

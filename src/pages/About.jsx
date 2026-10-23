@@ -19,11 +19,7 @@ function About() {
                     <span className="badge badge-green" style={{ marginBottom: "1rem" }}>
                         Our Botanic Philosophy
                     </span>
-                    <h1>Connecting Modern Spaces to Living Nature</h1>
-                    <p>
-                        We founded Leaf &amp; Clay with a simple conviction: bringing living greenery into our homes
-                        and desks transforms stress into tranquility and elevates everyday design.
-                    </p>
+                    <h1 style={{ marginBottom: 0 }}>Connecting Modern Spaces to Living Nature</h1>
                 </div>
             </section>
 
@@ -59,12 +55,9 @@ function About() {
                 </div>
 
                 {/* Values & Principles */}
-                <div className="section-header" style={{ marginBottom: "2rem" }}>
+                <div className="section-header" style={{ marginBottom: "2.5rem" }}>
                     <span className="section-tagline">What We Stand For</span>
-                    <h2 className="section-title">Our Guiding Pillars</h2>
-                    <p className="section-description">
-                        Every leaf, branch, and glaze is treated with deep reverence for nature and craftsmanship.
-                    </p>
+                    <h2 className="section-title" style={{ marginBottom: 0 }}>Our Guiding Pillars</h2>
                 </div>
 
                 <div className="values-grid">

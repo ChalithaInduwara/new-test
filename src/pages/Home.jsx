@@ -42,14 +42,9 @@ function Home() {
                                 <span>{siteSettings?.heroBadge || "Spring Nursery Release • 2026 Collection"}</span>
                             </div>
 
-                            <h1 className="hero-title">
+                            <h1 className="hero-title" style={{ marginBottom: "2rem" }}>
                                 {siteSettings?.heroTitle || "Living Art for Mindful Spaces."}
                             </h1>
-
-                            <p className="hero-subtitle">
-                                {siteSettings?.heroSubtitle ||
-                                    "Hand-trained Japanese bonsai, resilient architectural cacti, and hand-thrown ceramic pots—cultivated with botanical expertise to purify your home and workspace."}
-                            </p>
 
                             <div className="hero-cta-group">
                                 <Link to="/shop" className="btn btn-primary btn-lg">
@@ -106,11 +101,7 @@ function Home() {
                 <div className="container">
                     <div className="section-header">
                         <span className="section-tagline">Botanical Collections</span>
-                        <h2 className="section-title">Explore by Specimen Type</h2>
-                        <p className="section-description">
-                            Whether you're seeking a meditative bonsai focal point or low-maintenance desk succulents,
-                            each variety is potted in custom organic substrate.
-                        </p>
+                        <h2 className="section-title" style={{ marginBottom: 0 }}>Explore by Specimen Type</h2>
                     </div>
 
                     <div className="categories-grid">
@@ -174,10 +165,7 @@ function Home() {
                 <div className="container">
                     <div className="section-header">
                         <span className="section-tagline">Curator's Highlights</span>
-                        <h2 className="section-title">Featured Flora &amp; Pottery</h2>
-                        <p className="section-description">
-                            Our most beloved nursery-acclimated indoor specimens, pre-fertilized and ready for your sanctuary.
-                        </p>
+                        <h2 className="section-title" style={{ marginBottom: 0 }}>Featured Flora &amp; Pottery</h2>
                     </div>
 
                     {featuredProducts.length > 0 ? (
@@ -216,10 +204,7 @@ function Home() {
                 <div className="container">
                     <div className="section-header">
                         <span className="section-tagline">The Leaf &amp; Clay Difference</span>
-                        <h2 className="section-title">Plants Grown for Longevity</h2>
-                        <p className="section-description">
-                            We don't sell greenhouse-forced plants that drop leaves in a week. Every specimen is conditioned for ordinary indoor lighting.
-                        </p>
+                        <h2 className="section-title" style={{ marginBottom: 0 }}>Plants Grown for Longevity</h2>
                     </div>
 
                     <div className="values-grid" style={{ paddingBottom: 0 }}>

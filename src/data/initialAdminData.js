@@ -19,6 +19,6 @@ export const INITIAL_SITE_SETTINGS = {
     storeAddress: "",
     storeHours: "",
     heroTitle: "Living Art for Mindful Spaces.",
-    heroSubtitle: "Hand-trained Japanese bonsai, resilient architectural cacti, and hand-thrown ceramic pots—cultivated with botanical expertise to purify your home and workspace.",
+    heroSubtitle: "",
     heroBadge: ""
 };
