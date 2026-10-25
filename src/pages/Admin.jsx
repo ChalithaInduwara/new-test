@@ -90,22 +90,12 @@ export function Admin() {
     // =========================================================================
     if (!isAdminAuthenticated) {
         return (
-            <div
-                style={{
-                    minHeight: "100vh",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    backgroundColor: "var(--color-sand-light, #fcf9f5)",
-                    padding: "1.5rem"
-                }}
-            >
+            <div className="admin-login-wrapper">
                 <div
-                    className="admin-card"
+                    className="admin-card admin-login-card"
                     style={{
                         maxWidth: "440px",
                         width: "100%",
-                        padding: "2.5rem 2rem",
                         boxShadow: "var(--shadow-hover)",
                         border: "1px solid var(--color-border)"
                     }}

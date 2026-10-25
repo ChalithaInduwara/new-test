@@ -52,8 +52,8 @@ function Checkout() {
         shippingMethod === "express"
             ? 650
             : shippingMethod === "eco"
-            ? 400
-            : baseShippingFee;
+                ? 400
+                : baseShippingFee;
 
     const grandTotal = Math.max(0, cartSubtotal - discountAmount + shippingCost);
 

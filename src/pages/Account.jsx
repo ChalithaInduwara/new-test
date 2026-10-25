@@ -96,25 +96,13 @@ export function Account() {
     };
 
     return (
-        <div style={{ backgroundColor: "var(--color-sand-light, #fcf9f5)", minHeight: "85vh", padding: "3rem 1.5rem" }}>
+        <div className="account-page-wrapper">
             <div className="container" style={{ maxWidth: "1100px" }}>
                 {/* Admin Alert Pill if Admin is logged in */}
                 {isAdmin && (
-                    <div
-                        style={{
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                            padding: "1rem 1.5rem",
-                            borderRadius: "var(--radius-lg)",
-                            backgroundColor: "var(--color-forest)",
-                            color: "#ffffff",
-                            marginBottom: "2rem",
-                            boxShadow: "var(--shadow-sm)"
-                        }}
-                    >
-                        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-                            <ShieldCheck size={24} color="#a6d8b8" />
+                    <div className="account-admin-banner">
+                        <div className="account-admin-banner-info">
+                            <ShieldCheck size={24} color="#a6d8b8" style={{ flexShrink: 0 }} />
                             <div>
                                 <div style={{ fontWeight: 700 }}>Administrator Account Detected</div>
                                 <div style={{ fontSize: "0.82rem", opacity: 0.85 }}>
@@ -124,15 +112,7 @@ export function Account() {
                         </div>
                         <Link
                             to="/admin"
-                            className="btn btn-primary"
-                            style={{
-                                backgroundColor: "#ffffff",
-                                color: "var(--color-forest)",
-                                textDecoration: "none",
-                                padding: "0.5rem 1rem",
-                                fontSize: "0.85rem",
-                                fontWeight: 700
-                            }}
+                            className="btn btn-primary account-admin-btn"
                         >
                             Open Admin Suite →
                         </Link>
@@ -140,7 +120,7 @@ export function Account() {
                 )}
 
                 {/* Profile & Orders Grid */}
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: "2rem", alignItems: "start" }}>
+                <div className="account-grid-layout">
                     {/* Left Column: Profile Card */}
                     <div className="admin-card">
                         <div className="admin-card-header">

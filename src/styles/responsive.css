@@ -40,6 +40,78 @@ button, a, input, select, textarea {
 }
 
 /* ========================================================
+   ACCOUNT & AUTH PAGES FOUNDATION
+   ======================================================== */
+.account-page-wrapper {
+    min-height: 85vh;
+    padding: 3rem 1.5rem;
+    background-color: var(--color-sand-light, #fcf9f5);
+}
+
+[data-theme="dark"] .account-page-wrapper {
+    background-color: var(--color-forest-dark, #08100c);
+}
+
+.account-admin-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-lg);
+    background-color: var(--color-forest);
+    color: #ffffff;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-sm);
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.account-admin-banner-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1 1 300px;
+}
+
+.account-admin-btn {
+    background-color: #ffffff !important;
+    color: var(--color-forest) !important;
+    text-decoration: none;
+    padding: 0.55rem 1.15rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    white-space: nowrap;
+    border-radius: var(--radius-sm);
+    flex-shrink: 0;
+}
+
+.account-grid-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.auth-page-wrapper {
+    background-color: var(--color-sand-light, #fcf9f5);
+    min-height: 85vh;
+    padding: 3rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+[data-theme="dark"] .auth-page-wrapper {
+    background-color: var(--color-forest-dark, #08100c);
+}
+
+.auth-card {
+    padding: 2.5rem 2rem;
+    box-shadow: var(--shadow-hover);
+    border: 1px solid var(--color-border);
+}
+
+/* ========================================================
    TABLETS & MEDIUM SCREENS (<= 1100px)
    ======================================================== */
 @media (max-width: 1100px) {
@@ -310,6 +382,12 @@ button, a, input, select, textarea {
     .checkout-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
+    }
+
+    /* Account Page Layout Stack */
+    .account-grid-layout {
+        grid-template-columns: 1fr;
+        gap: 1.75rem;
     }
 
     /* About & Contact Grids */
@@ -633,6 +711,58 @@ button, a, input, select, textarea {
         display: none;
     }
 
+    /* Account & Auth Mobile Optimizations */
+    .account-page-wrapper {
+        padding: 1.5rem 0.85rem;
+    }
+
+    .account-admin-banner {
+        padding: 1rem 1.15rem;
+        flex-direction: column;
+        align-items: stretch;
+        text-align: left;
+        gap: 0.85rem;
+        border-radius: var(--radius-md);
+    }
+
+    .account-admin-btn {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+        padding: 0.65rem 1rem;
+    }
+
+    .auth-page-wrapper {
+        padding: 1.5rem 0.85rem;
+    }
+
+    .auth-card {
+        padding: 1.6rem 1.15rem;
+        border-radius: var(--radius-lg);
+    }
+
+    /* Universal Admin Card & Table Mobile Safeguards */
+    .admin-card {
+        border-radius: var(--radius-md);
+    }
+
+    .admin-card-header {
+        padding: 0.95rem 1.1rem !important;
+        flex-wrap: wrap;
+        gap: 0.65rem;
+    }
+
+    .admin-card-body {
+        padding: 1.1rem 0.9rem !important;
+    }
+
+    .admin-table-container {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
     /* Floating Toast Notification */
     .floating-toast {
         left: 1rem;
@@ -680,5 +810,25 @@ button, a, input, select, textarea {
     .hero-stats-row {
         flex-direction: column;
         gap: 0.85rem;
+    }
+
+    .account-page-wrapper {
+        padding: 1rem 0.5rem;
+    }
+
+    .account-admin-banner {
+        padding: 0.85rem;
+    }
+
+    .auth-card {
+        padding: 1.25rem 0.75rem;
+    }
+
+    .admin-card-header {
+        padding: 0.85rem 0.75rem !important;
+    }
+
+    .admin-card-body {
+        padding: 0.85rem 0.75rem !important;
     }
 }

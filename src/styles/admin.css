@@ -390,6 +390,8 @@ body.dark-mode .admin-stat-card {
     border-radius: var(--radius-lg, 22px);
     box-shadow: var(--shadow-sm);
     overflow: hidden;
+    min-width: 0;
+    max-width: 100%;
 }
 
 [data-theme="dark"] .admin-card,
@@ -404,6 +406,8 @@ body.dark-mode .admin-card {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
 }
 
 [data-theme="dark"] .admin-card-header,
@@ -428,8 +432,12 @@ body.dark-mode .admin-card-header {
    TABLE DESIGN & CRUD LISTS
    -------------------------------------------------------------------------- */
 .admin-table-container {
+    width: 100%;
+    max-width: 100%;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     border-radius: var(--radius-md);
+    display: block;
 }
 
 .admin-table {
@@ -825,40 +833,301 @@ body.dark-mode .admin-modal-footer {
 }
 
 /* --------------------------------------------------------------------------
-   RESPONSIVE ADMIN
+   ADMIN UTILITY GRIDS & CONTAINERS
+   -------------------------------------------------------------------------- */
+.admin-order-modal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.admin-product-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+}
+
+.admin-quick-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+    flex-wrap: wrap;
+}
+
+.admin-settings-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.admin-reset-btn {
+    margin-left: auto;
+}
+
+.admin-login-wrapper {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-sand-light, #fcf9f5);
+    padding: 1.5rem 1rem;
+}
+
+[data-theme="dark"] .admin-login-wrapper {
+    background-color: var(--color-forest-dark, #08100c);
+}
+
+.admin-login-card {
+    padding: 2.5rem 2rem;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE ADMIN (TABLETS & DESKTOPS <= 1024px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+    .dashboard-grid-2 {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .admin-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE ADMIN (SMARTPHONES <= 768px)
    -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
     .admin-layout {
         flex-direction: column;
+        width: 100%;
+        min-width: 0;
+        overflow-x: hidden;
     }
 
     .admin-sidebar {
         width: 100%;
         height: auto;
         position: relative;
+        border-right: none;
+        border-bottom: 1px solid var(--color-border);
+        box-shadow: var(--shadow-xs);
+    }
+
+    .admin-sidebar-header {
+        padding: 0.85rem 1rem;
     }
 
     .admin-sidebar-nav {
         flex-direction: row;
         overflow-x: auto;
-        padding: 0.75rem;
+        padding: 0.5rem 0.75rem;
+        gap: 0.5rem;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .admin-sidebar-nav::-webkit-scrollbar {
+        display: none;
     }
 
     .admin-nav-item {
+        width: auto;
+        flex-shrink: 0;
         white-space: nowrap;
         padding: 0.5rem 0.85rem;
+        font-size: 0.85rem;
+        border-radius: var(--radius-full);
+    }
+
+    .admin-nav-item.active {
+        box-shadow: none;
+        border-bottom: 2px solid var(--color-forest);
+    }
+
+    .admin-sidebar-footer {
+        padding: 0.75rem 1rem;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.6rem;
+    }
+
+    .admin-sidebar-footer > div:first-child {
+        width: 100%;
+        padding-bottom: 0.4rem;
+    }
+
+    .admin-sidebar-footer .admin-store-link {
+        flex: 1 1 auto;
+        justify-content: center;
+    }
+
+    .admin-sidebar-footer .admin-btn {
+        flex: 1 1 auto;
+        justify-content: center;
+        margin-top: 0 !important;
+    }
+
+    .admin-topbar {
+        height: auto;
+        min-height: 52px;
+        padding: 0.6rem 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 95;
+    }
+
+    .admin-topbar-actions {
+        gap: 0.5rem;
     }
 
     .admin-container {
-        padding: 1rem;
+        padding: 1.25rem 0.85rem;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow-x: hidden;
+    }
+
+    .admin-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+    }
+
+    .admin-search-box {
+        width: 100%;
+        max-width: 100%;
     }
 
     .admin-form-grid {
         grid-template-columns: 1fr;
+        gap: 0.85rem;
     }
 
     .admin-form-col-full {
         grid-column: span 1;
+    }
+
+    .admin-order-modal-grid {
+        grid-template-columns: 1fr;
+        gap: 0.85rem;
+    }
+
+    .admin-product-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .admin-quick-actions .admin-btn {
+        flex: 1 1 calc(50% - 0.5rem);
+        justify-content: center;
+        font-size: 0.82rem;
+        padding: 0.65rem 0.75rem;
+    }
+
+    .admin-settings-actions .admin-reset-btn {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .admin-settings-actions .admin-btn,
+    .admin-settings-actions label.admin-btn {
+        flex: 1 1 100%;
+        justify-content: center;
+    }
+
+    /* Modal adjustments on Mobile */
+    .admin-modal-backdrop {
+        padding: 0.6rem;
+    }
+
+    .admin-modal {
+        width: 100%;
+        max-width: 100%;
+        max-height: 94vh;
+        max-height: 94dvh;
+        border-radius: var(--radius-lg);
+    }
+
+    .admin-modal-header {
+        padding: 1rem 1.15rem;
+    }
+
+    .admin-modal-body {
+        padding: 1.15rem 1rem;
+    }
+
+    .admin-modal-footer {
+        padding: 0.85rem 1rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .admin-modal-footer .admin-btn {
+        flex: 1 1 auto;
+        justify-content: center;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE ADMIN (COMPACT SCREENS <= 480px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+    .admin-stats-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .admin-stat-card {
+        padding: 1rem 0.85rem;
+        border-radius: var(--radius-md);
+    }
+
+    .admin-stat-val {
+        font-size: 1.45rem;
+    }
+
+    .admin-stat-icon-wrap {
+        width: 40px;
+        height: 40px;
+    }
+
+    .admin-card-header {
+        padding: 0.85rem 1rem;
+    }
+
+    .admin-card-body {
+        padding: 0.85rem;
+    }
+
+    .admin-card-title {
+        font-size: 0.98rem;
+    }
+
+    .admin-quick-actions .admin-btn {
+        flex: 1 1 100%;
+    }
+
+    .admin-topbar-actions .admin-btn span {
+        display: none;
+    }
+
+    .admin-topbar-actions .admin-btn {
+        padding: 0.45rem;
+        min-width: 36px;
+        justify-content: center;
+    }
+
+    .admin-login-card {
+        padding: 1.5rem 1.15rem;
+        border-radius: var(--radius-lg);
     }
 }
 

@@ -340,7 +340,7 @@ export function AdminOrders() {
                         <form onSubmit={handleUpdateOrderDetails}>
                             <div className="admin-modal-body">
                                 {/* Customer & Shipping Info */}
-                                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem", marginBottom: "1.5rem", padding: "1rem", borderRadius: "var(--radius-md)", backgroundColor: "var(--color-emerald-ultra-light)" }}>
+                                <div className="admin-order-modal-grid" style={{ marginBottom: "1.5rem", padding: "1rem", borderRadius: "var(--radius-md)", backgroundColor: "var(--color-emerald-ultra-light)" }}>
                                     <div>
                                         <div style={{ fontSize: "0.75rem", fontWeight: 700, color: "var(--color-forest)", textTransform: "uppercase", marginBottom: "0.35rem" }}>
                                             Delivery Address

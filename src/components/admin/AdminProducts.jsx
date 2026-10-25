@@ -354,7 +354,7 @@ export function AdminProducts() {
                 </div>
             ) : (
                 /* Grid Cards View */
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))", gap: "1.25rem" }}>
+                <div className="admin-product-cards-grid">
                     {filteredProducts.map((p) => (
                         <div key={p.id} className="admin-card" style={{ display: "flex", flexDirection: "column" }}>
                             <div style={{ position: "relative", height: "180px", overflow: "hidden" }}>

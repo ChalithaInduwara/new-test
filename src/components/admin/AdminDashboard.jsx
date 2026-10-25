@@ -119,7 +119,7 @@ export function AdminDashboard({ setActiveTab }) {
             </div>
 
             {/* Quick Action Shortcuts */}
-            <div style={{ display: "flex", gap: "0.75rem", marginBottom: "1.75rem", flexWrap: "wrap" }}>
+            <div className="admin-quick-actions">
                 <button
                     className="admin-btn admin-btn-primary"
                     onClick={() => setActiveTab("products")}

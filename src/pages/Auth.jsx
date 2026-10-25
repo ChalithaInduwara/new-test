@@ -143,15 +143,12 @@ export function Auth() {
 
 
     return (
-        <div style={{ backgroundColor: "var(--color-sand-light, #fcf9f5)", minHeight: "85vh", padding: "3rem 1.5rem", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div className="auth-page-wrapper">
             <div
-                className="admin-card"
+                className="admin-card auth-card"
                 style={{
                     maxWidth: mode === "login" ? "440px" : "560px",
                     width: "100%",
-                    padding: "2.5rem 2rem",
-                    boxShadow: "var(--shadow-hover)",
-                    border: "1px solid var(--color-border)",
                     transition: "max-width var(--transition-base)"
                 }}
             >

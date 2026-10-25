@@ -327,7 +327,7 @@ export function AdminSettings() {
                                 Export all current products, orders, coupons, and messages as a portable JSON backup file, or revert back to factory nursery defaults anytime.
                             </p>
 
-                            <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", alignItems: "center" }}>
+                            <div className="admin-settings-actions">
                                 <button
                                     type="button"
                                     className="admin-btn admin-btn-secondary"
@@ -350,8 +350,7 @@ export function AdminSettings() {
 
                                 <button
                                     type="button"
-                                    className="admin-btn admin-btn-danger"
-                                    style={{ marginLeft: "auto" }}
+                                    className="admin-btn admin-btn-danger admin-reset-btn"
                                     onClick={() => setConfirmResetModal(true)}
                                 >
                                     <RotateCcw size={16} />
