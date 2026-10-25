@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import DarkModeBackground from "./components/common/DarkModeBackground";
 
 import Layout from "./components/layout/Layout";
 
@@ -16,7 +17,9 @@ import Account from "./pages/Account";
 
 function App() {
     return (
-        <Routes>
+        <>
+            <DarkModeBackground />
+            <Routes>
             {/* Storefront Layout */}
             <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
@@ -35,6 +38,7 @@ function App() {
             {/* Dedicated Admin Panel Workspace (Locked behind Admin Username & Password) */}
             <Route path="/admin" element={<Admin />} />
         </Routes>
+        </>
     );
 }
 

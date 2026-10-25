@@ -179,6 +179,8 @@ img {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    position: relative;
+    z-index: 1;
 }
 
 .main-viewport {
@@ -471,5 +473,82 @@ img {
     font-family: var(--font-serif);
     font-size: 1.1rem;
     color: var(--color-text-muted);
+}
+
+/* ========================================================
+   EXCLUSIVE DARK MODE AMBIENT PARTICLES VIDEO ANIMATION
+   (Pixabay 15451 Particles & Ink Overlay)
+   Active exclusively in Dark Mode. Fully dormant in Light Mode.
+   ======================================================== */
+.dark-mode-bg-portal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s;
+}
+
+/* When dark mode is active, reveal the glowing particle animation */
+[data-theme="dark"] ~ .dark-mode-bg-portal,
+[data-theme="dark"] .dark-mode-bg-portal,
+body.dark-mode .dark-mode-bg-portal,
+.dark-mode-bg-portal.theme-dark-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Light mode strictly suppresses the video container */
+.dark-mode-bg-portal.theme-light-dormant,
+[data-theme="light"] .dark-mode-bg-portal {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    display: none !important;
+}
+
+.dark-mode-ambient-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: 100vw;
+    height: 100vh;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    opacity: 0.52;
+    filter: brightness(0.92) contrast(1.18) saturate(1.2);
+    mix-blend-mode: screen;
+}
+
+/* Ambient botanical tinted overlay to balance particle glow with readability */
+.dark-mode-ambient-tint {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        ellipse 90% 85% at 50% 25%,
+        rgba(10, 22, 16, 0.2) 0%,
+        rgba(7, 14, 10, 0.68) 65%,
+        rgba(4, 9, 7, 0.9) 100%
+    );
+    pointer-events: none;
+}
+
+.dark-mode-ambient-vignette {
+    position: absolute;
+    inset: 0;
+    box-shadow: inset 0 0 160px rgba(0, 0, 0, 0.85);
+    pointer-events: none;
+}
+
+/* Smooth dark mode body tone */
+[data-theme="dark"] body,
+body.dark-mode {
+    background-color: #08120c !important;
 }
 

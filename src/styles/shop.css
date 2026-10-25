@@ -13,8 +13,10 @@
 }
 
 [data-theme="dark"] .hero-section {
-    background: linear-gradient(135deg, #09130d 0%, #112018 60%, #0d1812 100%);
-    border-bottom-color: #1a2f23;
+    background: linear-gradient(135deg, rgba(8, 16, 11, 0.72) 0%, rgba(15, 30, 22, 0.58) 60%, rgba(10, 20, 14, 0.76) 100%);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(94, 203, 141, 0.16);
 }
 
 .hero-grid {
@@ -275,8 +277,10 @@
 }
 
 [data-theme="dark"] .category-card {
-    background: #14241d;
-    border-color: #223a2e;
+    background: rgba(20, 36, 29, 0.78);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-color: rgba(94, 203, 141, 0.14);
 }
 
 .category-card:hover {
@@ -358,8 +362,10 @@
 }
 
 [data-theme="dark"] .product-card {
-    background: #14241d;
-    border-color: #223a2e;
+    background: rgba(20, 36, 29, 0.8);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-color: rgba(94, 203, 141, 0.14);
 }
 
 .product-card:hover {
